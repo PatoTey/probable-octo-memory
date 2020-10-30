@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Taller 02</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center m-3">Taller 02: Cifrador polialfabético</h1>
+        <form>
+            <div class="form-row">
+              <div class="col">
+                    <input id="inputClave1" type="number" class="form-control" placeholder="K1">
+              </div>
+              <div class="col">
+                    <input id="inputClave2" type="number" class="form-control" placeholder="K2">
+              </div>
+              <div class="col">
+                <input id="inputSecuencia" type="text" class="form-control" placeholder="Secuencia">
+            </div>
+            </div>
+        </form>
+        </br>
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <input id="inputTextoCifrado" type="text" class="form-control" placeholder="Texto cifrado">
+                </div>
+                <div class="col">
+                    <input id="inputTextoClaro" type="text" class="form-control" placeholder="Texto claro">
+                </div>
+            </div>
+        </form>
+        <div class="d-flex justify-content-center">
+            <button id="btnCifrado" class="btn btn-outline-primary btn-lg m-4">Cifrar</button>
+            <button id="btnDescifrado" class="btn btn-outline-primary btn-lg m-4">Descifrar</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        moduloEncriptador.nuevoEncriptador();
+    </script>
+</body>
+</html>
