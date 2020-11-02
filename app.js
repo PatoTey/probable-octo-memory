@@ -2,6 +2,7 @@ const moduloEncriptador = (() => {
    
     const alfBase = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','ñ','o','p','q','r','s','t','u','v','w','x','y','z'];
     let textoCifrado, textoClaro, secuencia,k1,k2;
+    let largoAlf = alfBase.length ;
     const btnDescifrado = document.getElementById("btnDescifrado");
     const btnCifrado = document.getElementById("btnCifrado");
 
@@ -14,17 +15,22 @@ const moduloEncriptador = (() => {
     }
 
     const obtenerEntradas = () => {
-        k1 = document.getElementById('inputClave1').value;        
+        k1 = document.getElementById('inputClave1').value;       
         k2 = document.getElementById('inputClave2').value;
         secuencia = document.getElementById('inputSecuencia').value; 
         if( k1 == "" || secuencia == ""|| k2 == ""){
             alert("Rellene los campos K1, K2 y secuencia");
             return false;
         }
-        else{  
-            textoCifrado = document.getElementById('inputTextoCifrado');
-            textoClaro = document.getElementById('inputTextoClaro');
-            return true;
+        else{
+            if( (k1>=1 && k1<=26) && (k2>=1 && k2<=26) && (secuencia.length>=2 && secuencia.length<=6)){
+                textoCifrado = document.getElementById('inputTextoCifrado');
+                textoClaro = document.getElementById('inputTextoClaro');
+                return true;
+            }
+            else{
+                    alert("K1 y K2 deben ser un numero entre 1 y 26 \n y secuencia debe tener un largo entre 2 y 6" )
+                }
         }
         
     }
@@ -35,6 +41,7 @@ const moduloEncriptador = (() => {
         let secIndexDes = 0;
         for(let i=0; i < textoTempDes.length; i++) {
             textoResult += encontrarCaracter(textoTempDes[i],secuencia[secIndexDes] === '1'? k1:k2, false)
+            console.log(textoResult)
             secIndexDes++;
             if(secIndexDes=== secuencia.length){
                 secIndexDes = 0;
@@ -58,20 +65,23 @@ const moduloEncriptador = (() => {
     }
 
     const encontrarCaracter = (letra,clave, accion) => {
-        let largoAlf = alfBase.length;
         letraIndex=0;
         if(accion){
             letraIndex = parseInt(alfBase.indexOf(letra)) + parseInt(clave);
+            letraIndex -= 1
             if(letraIndex > largoAlf){
-                letraIndex = (largoAlf - letraIndex)*(-1)
+                letraIndex  = (largoAlf - letraIndex)*(-1)
             }
         }
         else{
+
             letraIndex = parseInt(alfBase.indexOf(letra)) - parseInt(clave)
             if(letraIndex < 0){
                 letraIndex = (largoAlf + letraIndex)
             }
         }
+        console.log(letraIndex + " "+ letra)
+        console.log(alfBase[letraIndex])
         return(alfBase[letraIndex]);
     }
 
